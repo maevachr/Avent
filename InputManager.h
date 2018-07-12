@@ -10,12 +10,7 @@
 
 class InputManager : public Singleton<InputManager>{
     public:
-    void ManageMainKeyEvent (sf::Window& window, const sf::Event& event){
-
-        sf::Vector2u sizeWin = window.getSize();
-        sizeWin = sf::Vector2u(sizeWin.x/2, sizeWin.y/2);
-        window.setSize(sizeWin);
-    }
+    void ManageMainKeyEvent (sf::Window& window, const sf::Event& event);
 };
 
 

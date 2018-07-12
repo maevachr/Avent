@@ -13,8 +13,7 @@ int main() {
 
     InputManager inputManager;
 
-    //window.setVerticalSyncEnabled(true);
-    window.setKeyRepeatEnabled(false);
+    //window.setKeyRepeatEnabled(false);
     while(window.isOpen()){
         sf::Event event;
         while(window.pollEvent(event)){
