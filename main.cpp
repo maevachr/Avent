@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 #include "Singleton.h"
 #include "InputManager.h"
 #include "World.h"
@@ -9,7 +10,7 @@
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    sf::Window window(sf::VideoMode(800,600),"Avent");
+    sf::RenderWindow window(sf::VideoMode(800,600),"Avent");
 
     InputManager inputManager;
 
@@ -28,6 +29,8 @@ int main() {
                     break;
             }
         }
+        window.clear(sf::Color::Black);
+        window.display();
 
     }
     return 0;
