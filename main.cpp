@@ -1,11 +1,17 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include "Singleton.h"
+#include "InputManager.h"
+#include "World.h"
+
+#define g_InputMng InputManager::GetSingleton()
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
     sf::Window window(sf::VideoMode(800,600),"Avent");
-    sf::Vector2u sizeWin = window.getSize();
+
+    InputManager inputManager;
 
     //window.setVerticalSyncEnabled(true);
     window.setKeyRepeatEnabled(false);
@@ -17,8 +23,7 @@ int main() {
                     window.close();
                     break;
                 case sf::Event::KeyPressed:
-                    sizeWin = sf::Vector2u(sizeWin.x/2, sizeWin.y/2);
-                    window.setSize(sizeWin);
+                    g_InputMng.ManageMainKeyEvent(window, event);
                     break;
                 default:
                     break;
