@@ -9,7 +9,13 @@
 #include "Singleton.h"
 
 class InputManager : public Singleton<InputManager>{
-    public:
+private:
+    InputManager(const InputManager&) = delete;
+    InputManager(const InputManager&&) = delete;
+    InputManager operator=(const InputManager&) = delete;
+    InputManager operator=(const InputManager&&) = delete;
+public:
+    InputManager() = default;
     void ManageMainKeyEvent (sf::Window& window, const sf::Event& event);
 };
 

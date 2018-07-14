@@ -17,11 +17,11 @@ public:
         ms_Singleton = static_cast<T*>(this);
     }
     ~Singleton(){ ms_Singleton = nullptr; }
-    static T& GetSingleton(){
+    static T& GetInstance(){
         assert(ms_Singleton);
         return *ms_Singleton;
     }
-    static T* GetSingletonPtr(){
+    static T* GetInstancePtr(){
         return ms_Singleton;
     }
 };

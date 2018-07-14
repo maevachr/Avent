@@ -4,7 +4,7 @@ project(Avent)
 set(CMAKE_CXX_STANDARD 17)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
 
-set(SOURCE_FILES main.cpp World.cpp World.h InputManager.cpp InputManager.h Singleton.cpp Singleton.h)
+set(SOURCE_FILES main.cpp World.cpp World.h InputManager.cpp InputManager.h Singleton.cpp Singleton.h Hero.cpp Hero.h GameObject.cpp GameObject.h)
 add_executable(Avent ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

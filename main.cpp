@@ -6,7 +6,7 @@
 #include "InputManager.h"
 #include "World.h"
 
-#define g_InputMng InputManager::GetSingleton()
+#define g_InputMng InputManager::GetInstance()
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
