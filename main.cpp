@@ -7,6 +7,7 @@
 #include "World.h"
 
 #define g_InputMng InputManager::GetInstance()
+#define g_GOMng GameObjectManager::GetInstance()
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
