@@ -5,15 +5,22 @@
 #include "Singleton.h"
 #include "InputManager.h"
 #include "World.h"
+#include "GameObject.h"
 
 #define g_InputMng InputManager::GetInstance()
-#define g_GOMng GameObjectManager::GetInstance()
+#define g_GOMng GameObjectMgr::GetInstance()
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
     sf::RenderWindow window(sf::VideoMode(800,600),"Avent");
 
     InputManager inputManager;
+    GameObjectMgr gameObjectMgr;
+
+    HGameObject hero = g_GOMng.CreateGameObject("hero");
+    std::cout << hero.GetIndex() << " : " << g_GOMng.GetName(hero) << std::endl;
+    g_GOMng.DeleteGameObject(hero);
+
 
     //window.setKeyRepeatEnabled(false);
     while(window.isOpen()){
