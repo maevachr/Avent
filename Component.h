@@ -6,18 +6,21 @@
 #define AVENT_COMPONENT_H
 
 
-#include "GameObject.h"
+#include <string>
+#include "Handle.h"
+
+class GameObject;
+struct tagGameObject{};
+using HGameObject = Handle<tagGameObject>;
 
 class Component {
 public:
+    static constexpr char *ms_TypeId = "Component";
     virtual ~Component() = default;
     virtual HGameObject GetOwner() const = 0;
-
-    // register to corresponding Manager and add Owner
-    virtual void OnAttached(HGameObject hgo) = 0;
-    // unregister to corresponding manager
-    virtual void OnDetached() = 0;
+    virtual const char* GetId() const { return Component::ms_TypeId;}
 };
 
+;
 
 #endif //AVENT_COMPONENT_H

@@ -36,9 +36,9 @@ public:
     const DATA* Dereference(HANDLE handle) const;
 
     //other query
-    unsigned  int GetUsedHandleCount() const { return (m_MagicNumbers.size() - m_FreeSlots.size()); }
+    unsigned  int GetUsedHandleCount() const { return static_cast<unsigned int>(m_MagicNumbers.size() - m_FreeSlots.size()); }
 
-    bool HasUsedHandles() const { return (!!GetUsedHandleCount());}
+    bool HasUsedHandles() const { return (GetUsedHandleCount() != 0);}
 };
 
 
@@ -47,7 +47,7 @@ DATA* HandleMgr <DATA, HANDLE>::Acquire(HANDLE& handle){
     // if free list is empty, add a new one otherwise use first one found
     unsigned int index;
     if(m_FreeSlots.empty()){
-        index = m_MagicNumbers.size();
+        index = static_cast<unsigned int>(m_MagicNumbers.size());
         handle.Init(index);
         m_UserData.push_back(DATA());
         m_MagicNumbers.push_back(handle.GetMagic());
@@ -72,6 +72,8 @@ void HandleMgr <DATA, HANDLE>::Release(HANDLE handle) {
     //ok remove it - tag as unused and add to free list
     m_MagicNumbers[index] = 0;
     m_FreeSlots.push_back(index);
+
+    delete &(*(m_UserData.begin() + index));
 }
 
 template <typename DATA, typename HANDLE>

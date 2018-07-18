@@ -6,9 +6,11 @@
 #include "InputManager.h"
 #include "World.h"
 #include "GameObject.h"
+#include "RenderComponent.h"
 
 #define g_InputMng InputManager::GetInstance()
 #define g_GOMng GameObjectMgr::GetInstance()
+#define g_RenderMng RenderComponentMgr::GetInstance()
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -16,10 +18,21 @@ int main() {
 
     InputManager inputManager;
     GameObjectMgr gameObjectMgr;
+    RenderComponentMgr renderComponentMgr;
 
     HGameObject hero = g_GOMng.CreateGameObject("hero");
     std::cout << hero.GetIndex() << " : " << g_GOMng.GetName(hero) << std::endl;
+    g_GOMng.CreateComponent<RenderComponentMgr::RenderComponent, RenderComponentMgr>(hero);
+    auto it = g_GOMng.FindComponent<RenderComponentMgr::RenderComponent>(hero);
+    if(!g_GOMng.IsNull(it, hero)){
+        Component* renderComp = *it;
+        std::cout << "Type : " << renderComp->GetId() << std::endl;
+        g_GOMng.RemoveComponent<RenderComponent, RenderComponentMgr>(hero);
+    }else{
+        std::cout << "Component non trouvé "<< std::endl;
+    }
     g_GOMng.DeleteGameObject(hero);
+    hero = HGameObject{};
 
 
     //window.setKeyRepeatEnabled(false);

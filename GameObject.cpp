@@ -4,11 +4,7 @@
 
 #include "GameObject.h"
 
-GameObjectMgr::~GameObjectMgr() {
-
-}
-
-HGameObject GameObjectMgr::CreateGameObject(std::string name) {
+HGameObject GameObjectMgr::CreateGameObject(const std::string& name) {
     HGameObject hgo = HGameObject{};
     GameObject* go = m_GameObjects.Acquire(hgo);
     go->m_Name = name;
